@@ -1,0 +1,42 @@
+{% extends 'rango/base.html' %}
+
+{% block title %}Register - Rango{% endblock %}
+
+{% block content %}
+<h1 class="page-heading">Register</h1>
+
+<div class="panel">
+    <div class="panel-heading">Create New Account</div>
+    <div class="panel-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_username">Username:</label>
+                {{ user_form.username }}
+            </div>
+            <div class="form-group">
+                <label for="id_email">Email:</label>
+                {{ user_form.email }}
+            </div>
+            <div class="form-group">
+                <label for="id_password">Password:</label>
+                {{ user_form.password }}
+            </div>
+            <div class="form-group">
+                <label for="id_website">Website:</label>
+                {{ profile_form.website }}
+            </div>
+            <div class="form-group">
+                <label for="id_picture">Picture:</label>
+                {{ profile_form.picture }}
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
+        {% if registered %}
+            <div class="alert alert-success">
+                Registration successful! You can now log in.
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'rango/base.html' %}
+
+{% block title %}Add Category - Rango{% endblock %}
+
+{% block content %}
+<h1 class="page-heading">Add Category</h1>
+
+<div class="panel">
+    <div class="panel-heading">Create New Category</div>
+    <div class="panel-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_name">Category Name:</label>
+                {{ form.name }}
+            </div>
+            <button type="submit" class="btn">Create Category</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

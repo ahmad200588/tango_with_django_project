@@ -1,0 +1,33 @@
+{% extends 'rango/base.html' %}
+
+{% block title %}Search - Rango{% endblock %}
+
+{% block content %}
+<h1 class="page-heading">Search Results</h1>
+
+<div class="panel">
+    <div class="panel-heading">Categories Found</div>
+    <div class="panel-body">
+        {% if categories %}
+            {% for category in categories %}
+                <p><a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a></p>
+            {% endfor %}
+        {% else %}
+            <p>No categories found.</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="panel">
+    <div class="panel-heading">Pages Found</div>
+    <div class="panel-body">
+        {% if pages %}
+            {% for page in pages %}
+                <p><a href="{{ page.url }}">{{ page.title }}</a></p>
+            {% endfor %}
+        {% else %}
+            <p>No pages found.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

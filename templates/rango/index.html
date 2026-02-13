@@ -1,0 +1,51 @@
+{% extends "rango/base.html" %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Rango says...</h1>
+        {% if rango_does_like_django %}
+            <p>Rango says: Hello, I like Django!</p>
+        {% else %}
+            <p>Hey there partner! Ready to explore?</p>
+        {% endif %}
+        <p class="tagline">Crunchy, creamy, cookie, candy, cupcake!</p>
+    </div>
+
+    <!-- Panels Section -->
+    <div class="panels-container">
+        <!-- Categories Panel -->
+        <div class="panel">
+            <div class="panel-header">Top 5 Categories</div>
+            <div class="panel-body">
+                {% if categories %}
+                    <ul class="panel-list">
+                        {% for category in categories %}
+                            <li><a href="/category/{{ category.slug }}/">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No categories found.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Pages Panel -->
+        <div class="panel">
+            <div class="panel-header">Top 5 Pages</div>
+            <div class="panel-body">
+                {% if pages %}
+                    <ul class="panel-list">
+                        {% for page in pages %}
+                            <li><a href="{{ page.url }}" target="_blank">{{ page.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No pages found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

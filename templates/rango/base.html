@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load rango_template_tags %}
+{% get_category_list as sidebar_categories %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Rango -
+        {% block title %}
+        
+        {% endblock %}
+    </title>
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="/" class="navbar-brand">Rango</a>
+            <ul class="navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="/logout/">Logout</a></li>
+                {% else %}
+                    <li><a href="/register/">Register</a></li>
+                    <li><a href="/login/" class="btn btn-primary btn-sm">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-box">
+                <h3>Find a Category</h3>
+                <input type="text" class="search-box" placeholder="Search categories...">
+            </div>
+            
+            <div class="sidebar-box">
+                <h3>Categories</h3>
+                <ul class="category-list">
+                    {% if sidebar_categories %}
+                        {% for category in sidebar_categories %}
+                            <li><a href="/category/{{ category.slug }}/">{{ category.name }}</a></li>
+                        {% endfor %}
+                    {% else %}
+                        <li>No categories found.</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Visits: <span id="visits">0</span></p>
+    </footer>
+
+</body>
+</html>

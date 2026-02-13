@@ -1,0 +1,15 @@
+{% extends 'rango/base.html' %}
+
+{% block title %}Restricted Area - Rango{% endblock %}
+
+{% block content %}
+<h1 class="page-heading">Restricted Area</h1>
+
+<div class="panel">
+    <div class="panel-heading">Restricted Content</div>
+    <div class="panel-body">
+        <p>This page is only accessible to logged-in users.</p>
+        <p>Welcome, {{ user.username }}!</p>
+    </div>
+</div>
+{% endblock %}
